@@ -11,10 +11,18 @@ class PostcontactCubit extends Cubit<PostcontactState> {
   final ContactRepository _contactRepository;
   PostcontactCubit(this._contactRepository) : super(PostcontactInitial());
 
+
   void addContact(Contact contact){
     emit(PostcontactLodinng());
     _contactRepository.addContact(contact)
     .then((value) => emit(PostcontactSuccess()))
     .catchError((e) => emit(PostcontactFail('Error')));
+  }
+
+  @override
+  Future<void> close() {
+    print('close');
+    return super.close();
+
   }
 }

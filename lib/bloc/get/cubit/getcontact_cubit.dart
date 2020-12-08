@@ -15,7 +15,7 @@ class GetcontactCubit extends Cubit<GetContactState> {
     emit(GetContactInitial());
     _contactRepository.getContact()
     .then((value) => emit(GetContactSuccess(value)))
-    .catchError((e) => emit(GetContactFail('Error')));
+    .catchError((e) => emit(GetContactFail(e.toString())));
 
   }
   void delete(String id){

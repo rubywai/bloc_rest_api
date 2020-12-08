@@ -35,6 +35,9 @@ class Home extends StatelessWidget {
                   return item(contacts[position],context);
                 });
           }
+          else if(state is GetContactFail){
+            return Center(child: Text('${state.error}'));
+          }
           return Center(child: CircularProgressIndicator());
         },
       ),

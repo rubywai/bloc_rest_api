@@ -7,7 +7,10 @@ import 'package:dio/dio.dart';
 
 var getIt = GetIt.I;
 void locator(){
-  getIt.registerLazySingleton(() => Dio());
+  Dio dio = Dio();
+  dio.interceptors.add(LogInterceptor(
+  ));
+  getIt.registerLazySingleton(() => dio);
 
   getIt.registerLazySingleton(() =>  ApiService(getIt.call()));
 
