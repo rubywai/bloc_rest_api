@@ -29,7 +29,11 @@ dependencies:
   equatable:
   flutter_slidable:
   progress_dialog:
+  injectable:
   get_it: #service locator
+  floor:
+  shared_preferences: ^0.5.12+4
+  shimmer: ^1.1.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -39,9 +43,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  injectable_generator:
   retrofit_generator:
   json_serializable:
   build_runner:
+  floor_generator:
 
 
 # For information on the generic Dart part of this file, see the

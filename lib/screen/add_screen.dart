@@ -3,7 +3,7 @@ import 'package:bloc_rest_api/data/model/contact.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../module.dart';
+import 'package:bloc_rest_api/di/injection.dart';
 
 class AddScreen extends StatelessWidget {
   @override
@@ -105,7 +105,7 @@ class _ContactFormState extends State<ContactForm> {
           FlatButton(onPressed: (){
             if(_formKey.currentState.validate()){
               _formKey.currentState.save();
-              Contact contact = Contact('', _name, _job, _age);
+              Contact contact = Contact(_name, _job, _age);
               context.bloc<PostcontactCubit>().addContact(contact);
             }
 

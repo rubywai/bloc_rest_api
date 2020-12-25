@@ -1,23 +1,23 @@
-import 'package:bloc_rest_api/bloc/post/cubit/postcontact_cubit.dart';
+import 'package:bloc_rest_api/bloc/get/cubit/getcontact_cubit.dart';
 import 'package:bloc_rest_api/bloc/put/cubit/editcontact_cubit.dart';
 import 'package:bloc_rest_api/data/model/contact.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../module.dart';
+import 'package:bloc_rest_api/di/injection.dart';
 
 class EditScreen  extends StatelessWidget {
   final Contact _contact;
   EditScreen(this._contact);
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<EditcontactCubit>(
-      create: (context) => EditcontactCubit(getIt.call()),
+    return BlocProvider<EditContactCubit>(
+      create: (context) => getIt.call(),
       child: Scaffold(
         appBar: AppBar(
           title: Text('Edit Contact'),
         ),
-        body: BlocBuilder<EditcontactCubit, EditContactState>(
+        body: BlocBuilder<EditContactCubit, EditContactState>(
           builder: (context, state) {
             if(state is EditContactLoading){
               return Center(child: CircularProgressIndicator());
@@ -115,8 +115,8 @@ class _ContactFormState extends State<ContactForm> {
           FlatButton(onPressed: (){
             if(_formKey.currentState.validate()){
               _formKey.currentState.save();
-              Contact contact = Contact(_contact.id, _name, _job, _age);
-              context.bloc<EditcontactCubit>().edit(_contact.id, contact);
+              Contact contact = Contact( _name, _job, _age,id: _contact.id);
+              context.bloc<EditContactCubit>().edit(_contact.id, contact);
             }
 
           }, child: Text('Edit Contact'))
