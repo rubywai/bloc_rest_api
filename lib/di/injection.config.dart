@@ -13,7 +13,8 @@ import '../data/api/apiservice.dart';
 import '../data/database/contact_dao.dart';
 import '../data/database/contact_database.dart';
 import 'injection.dart';
-import '../data/contact_repository.dart';
+import '../data/contact_repositorys.dart';
+import '../data/contact_repository_impl.dart';
 import '../bloc/put/cubit/editcontact_cubit.dart';
 import '../bloc/get/cubit/getcontact_cubit.dart';
 import '../bloc/post/cubit/postcontact_cubit.dart';
@@ -31,18 +32,19 @@ Future<GetIt> $initGetIt(
   final contactDatabase = await contactModule.contactDatabase;
   gh.lazySingleton<ContactDatabase>(() => contactDatabase);
   gh.lazySingleton<Dio>(() => contactModule.dio);
+  gh.factory<EditContactCubit>(
+      () => EditContactCubit(get<ContactRepository>()));
+  gh.factory<GetContactCubit>(() => GetContactCubit(get<ContactRepository>()));
   gh.lazySingleton<LogInterceptor>(() => contactModule.loggingInter);
+  gh.factory<PostcontactCubit>(
+      () => PostcontactCubit(get<ContactRepository>()));
   gh.lazySingletonAsync<SharedPreferences>(() => contactModule.share);
   gh.lazySingleton<ApiService>(
       () => contactModule.apiService(get<Dio>(), get<LogInterceptor>()));
   gh.lazySingleton<ContactDao>(
       () => contactModule.contactDao(get<ContactDatabase>()));
-  gh.factory<ContactRepository>(() => ContactRepository(get<ApiService>()));
-  gh.factory<EditContactCubit>(
-      () => EditContactCubit(get<ContactRepository>()));
-  gh.factory<GetContactCubit>(() => GetContactCubit(get<ContactRepository>()));
-  gh.factory<PostcontactCubit>(
-      () => PostcontactCubit(get<ContactRepository>()));
+  gh.factory<ContactRepositoryImpl>(
+      () => ContactRepositoryImpl(get<ApiService>()));
   return get;
 }
 

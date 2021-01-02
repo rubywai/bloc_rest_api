@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:bloc_rest_api/data/contact_repository.dart';
+import 'package:bloc_rest_api/data/contact_repository_impl.dart';
+import 'package:bloc_rest_api/data/contact_repositorys.dart';
 import 'package:bloc_rest_api/data/model/contact.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
