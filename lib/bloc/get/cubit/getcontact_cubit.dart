@@ -13,7 +13,6 @@ class GetContactCubit extends Cubit<GetContactState> {
   GetContactCubit(this._contactRepository) : super(GetContactInitial()){
     getContact();
   }
-
   void getContact(){
     emit(GetContactInitial());
     _contactRepository.getContact()
