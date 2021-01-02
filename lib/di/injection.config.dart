@@ -43,7 +43,7 @@ Future<GetIt> $initGetIt(
       () => contactModule.apiService(get<Dio>(), get<LogInterceptor>()));
   gh.lazySingleton<ContactDao>(
       () => contactModule.contactDao(get<ContactDatabase>()));
-  gh.factory<ContactRepositoryImpl>(
+  gh.lazySingleton<ContactRepositoryImpl>(
       () => ContactRepositoryImpl(get<ApiService>()));
   return get;
 }

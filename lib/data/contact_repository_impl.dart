@@ -3,7 +3,7 @@ import 'package:bloc_rest_api/data/model/contact.dart';
 import 'package:injectable/injectable.dart';
 
 import 'contact_repositorys.dart';
-@injectable
+// repository is use for entire aaplication
 @lazySingleton
 class ContactRepositoryImpl extends ContactRepository{
   final ApiService _apiService;
